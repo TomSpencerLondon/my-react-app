@@ -1,13 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import {useState, useEffect } from "react";
+import { useState } from "react";
 
 function Square(props) {
-  useEffect(() => {
-    console.log("Hello, I have changed");
-  }, [props.value])
-
   return (
     <button className="square" onClick={ props.onClick } >
       { props.value }
@@ -21,6 +17,9 @@ function Board() {
 
   const handleClick = (i) => {
     const squaresClone = squares.slice();
+    if (squares[i] !== null){
+      return;
+    }
     squaresClone[i] = xIsNext ? 'X' : 'O';
     setSquares(squaresClone);
     setXIsNext(!xIsNext);
